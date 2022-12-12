@@ -147,6 +147,10 @@ class View extends \Magento\Framework\View\Element\Template
         $order = $this->getOrder();
 
         if ($order) {
+            if ($order->getState() === 'processing' || $order->getState() === 'complete') {
+                return;
+            }
+
             $status = $this->cnf->getAssignedStatus(Order::STATE_PENDING_PAYMENT);
 
             $order->setData('state', $status->getState());

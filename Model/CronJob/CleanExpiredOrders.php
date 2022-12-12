@@ -140,7 +140,7 @@ class CleanExpiredOrders
                         $this->logger->info(
                             sprintf('CleanExpiredOrders: Order #%s. It was paid, no cancel.', $entityId)
                         );
-                    } elseif ($result->getNcError() === '50001130' || (int) $result->getStatus() === 0) {
+                    } elseif ($result->getNcError() === '50001130' || (int) $result->getStatus() === 0 || (int) $result->getStatus() === 3) {
                         // Check for error: "unknown orderid xxx for merchant xxx" or zero status
                         $this->logger->info(
                             sprintf('CleanExpiredOrders: Order #%s. Cancel.', $entityId)

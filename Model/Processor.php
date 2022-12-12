@@ -233,6 +233,7 @@ class Processor
                     $status = $this->config->getAssignedState($new_status);
                     $order->setData('state', $status->getState());
                     $order->setStatus($status->getStatus());
+                    $order->setData('send_email', true);
                     $this->_addOrderMessage($order, $message, __('ingenico.notification.message6'));
 
                     $this->orderRepository->save($order);
@@ -262,6 +263,7 @@ class Processor
             $status = $this->config->getAssignedState($new_status);
             $order->setData('state', $status->getState());
             $order->setStatus($status->getStatus());
+            $order->setData('send_email', true);
             $this->_addOrderMessage($order, $message, __('ingenico.notification.message6'));
 
             $dbTransaction = $this->transactionFactory->create();
